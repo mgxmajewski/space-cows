@@ -41,13 +41,15 @@
     <py-env>
     - paths:
       - ./pyscript/utils.py
+      - ./pyscript/ps1_partition.py
+      - ./pyscript/ps1.py
     </py-env>
   </head>
 
   <body class="container">
     <!-- <py-repl id="my-repl" auto-generate="true"> </py-repl> -->
   <py-script src="/pyscript/cows-boarding.py">  </py-script>
-
+  <py-script src="/pyscript/ps1.py">  </py-script>
 
   <main class="max-w-xs mx-auto mt-4">
     <section>
@@ -75,7 +77,8 @@
             </label>
         </section>
       </template>
-
+            <button id="start-optimizing-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit" pys-onClick="start_cow_transport_optimization_event"> Solve optimal transport
+      </button>
   </section>
   </main>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>

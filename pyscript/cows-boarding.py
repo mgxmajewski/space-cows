@@ -1,6 +1,7 @@
 from datetime import datetime as dt
 
 from utils import add_class, remove_class
+from ps1 import start_cow_transport_optimization
 
 cows_transport = []
 
@@ -11,6 +12,7 @@ cow_template = Element("task-template").select(".task", from_content=True)
 cow_list = Element("list-tasks-container")
 new_cow_name = Element("new-cow-name")
 new_cow_weight = Element("new-cow-weight")
+start_optimizing_btn = Element("start-optimizing-btn")
 
 
 def add_cow(*ags, **kws):
@@ -29,7 +31,7 @@ def add_cow(*ags, **kws):
     }
 
     cows_transport.append(cow)
-    cows_transport_dict[new_cow_name.element.value] = new_cow_weight.element.value
+    cows_transport_dict[new_cow_name.element.value] = int(new_cow_weight.element.value)
     print(cows_transport_dict)
 
     # add the task element to the page as new node in the list by cloning from a
@@ -57,4 +59,9 @@ def add_cow_event(e):
         add_cow()
 
 
+def start_cow_transport_optimization_event(e):
+    start_cow_transport_optimization(cows_transport_dict)
+
+
 new_cow_name.element.onkeypress = add_cow_event
+start_optimizing_btn.element.onclick = start_cow_transport_optimization_event
