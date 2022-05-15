@@ -45,29 +45,15 @@ def add_cow(*ags, **kws):
     cow_html_check = cow_html.select("input")
     cow_trip_div.element.appendChild(cow_html.element)
 
-    def check_cow(e):
-        cow["done"] = not cow["done"]
-        if cow["done"]:
-            add_class(cow_html_content, "line-through")
-        else:
-            remove_class(cow_html_content, "line-through")
+    def delete_cow(e):
+        cow_html.element.remove()
+        current_cow_paragraph = cow_html.element.children.item(0).children.item(1)
+        current_cow_name = current_cow_paragraph.innerHTML.split(':')[0]
+        del cows_transport_dict[current_cow_name]
 
     new_cow_name.clear()
     new_cow_weight.clear()
-    cow_html_check.element.onclick = check_cow
-
-
-def remove_cows(e):
-    cows_list = cow_trip_div.element.children
-
-    for cow in range(len(cows_list)):
-        current_cow = cow_trip_div.element.children.item(cow)
-        if current_cow is not None:
-            current_cow_content = current_cow.children.item(0).children.item(1)
-            is_cow_to_delete = current_cow_content.classList.contains("line-through")
-            if is_cow_to_delete:
-                cow_trip_div.element.removeChild(current_cow)
-
+    cow_html_check.element.onclick = delete_cow
 
 
 def add_result(algo_type):
