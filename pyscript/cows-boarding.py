@@ -17,6 +17,7 @@ new_cow_name = Element("new-cow-name")
 new_cow_weight = Element("new-cow-weight")
 start_optimizing_greedy_btn = Element("start-optimizing-greedy-btn")
 start_optimizing_brute_btn = Element("start-optimizing-brute-btn")
+remove_cows_btn = Element("remove-cows-btn")
 
 
 def add_cow(*ags, **kws):
@@ -54,6 +55,19 @@ def add_cow(*ags, **kws):
     new_cow_name.clear()
     new_cow_weight.clear()
     cow_html_check.element.onclick = check_cow
+
+
+def remove_cows(e):
+    cows_list = cow_trip_div.element.children
+
+    for cow in cows_list:
+        current_cow = cow_trip_div.element.children.item(cow)
+        current_cow_content = current_cow.children.item(0).children.item(1)
+        is_cow_to_delete = current_cow_content.classList.contains("line-through")
+        if is_cow_to_delete:
+            print(current_cow)
+
+
 
 def add_result(algo_type):
 
