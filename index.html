@@ -1,17 +1,13 @@
 <!doctype html>
-<html class="no-js" lang="">
-
+<html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <meta property="og:title" content="">
   <meta property="og:type" content="">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
-
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
@@ -20,67 +16,74 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>
   <meta name="theme-color" content="#fafafa">
-</head>
 
-<body>
+  <title>Todo App</title>
 
-<!-- Add your site or application content here -->
-<p>Hello world! This is HTML5 Boilerplate.</p>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>
 
-    <title>Todo App</title>
-
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-    <py-env>
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <py-env>
     - paths:
       - ./pyscript/utils.py
       - ./pyscript/ps1_partition.py
       - ./pyscript/ps1.py
-    </py-env>
-  </head>
+  </py-env>
+</head>
 
-  <body class="container">
-    <!-- <py-repl id="my-repl" auto-generate="true"> </py-repl> -->
-  <py-script src="/pyscript/cows-boarding.py">  </py-script>
-  <py-script src="/pyscript/ps1.py">  </py-script>
+<body class="container">
+<!-- Add your site or application content here -->
+<p>Hello world! This is HTML5 Boilerplate.</p>
+<!-- <py-repl id="my-repl" auto-generate="true"> </py-repl> -->
+<py-script src="/pyscript/cows-boarding.py"></py-script>
+<py-script src="/pyscript/ps1.py"></py-script>
 
-  <main class="max-w-xs mx-auto mt-4">
-    <section>
+<main class="max-w-xs mx-auto mt-4">
+  <section>
 
     <div class="text-center w-full mb-8">
       <h1 class="text-3xl font-bold text-gray-800 uppercase tracking-tight">To Do List</h1>
     </div>
     <div>
-      <label for="new-cow-name">Cow name<input id="new-cow-name" class="border flex-1 mr-3 border-gray-300 p-2 rounded" type="text"></label>
-      <label for="new-cow-weight">Cow weight (integer)<input id="new-cow-weight" class="border flex-1 mr-3 border-gray-300 p-2 rounded" type="number"></label>
-      <button id="new-task-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit" pys-onClick="add_cow">
+      <label for="new-cow-name">Cow name<input id="new-cow-name" class="border flex-1 mr-3 border-gray-300 p-2 rounded"
+                                               type="text"></label>
+      <label for="new-cow-weight">Cow weight (integer)<input id="new-cow-weight"
+                                                             class="border flex-1 mr-3 border-gray-300 p-2 rounded"
+                                                             type="number"></label>
+      <button id="new-task-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit"
+              pys-onClick="add_cow">
         Add task
       </button>
     </div>
 
-    <py-list id="myList"></py-list>
-    <div id="list-tasks-container" class="flex flex-col-reverse mt-4">
-  </div>
-
-    <template id="task-template">
-        <section class="task bg-white my-1">
-            <label for="flex items-center p-2 ">
-              <input class="mr-2" type="checkbox" class="cow-check">
-              <p class="m-0 inline"></p>
-            </label>
-        </section>
-      </template>
-            <button id="start-optimizing-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit" pys-onClick="start_cow_transport_optimization_event"> Solve optimal transport
-      </button>
+    <!--    <py-list id="myList"></py-list>-->
+    <template id="cow-list-template">
+      <section class="cow bg-white my-1">
+        <label for="flex items-center p-2 ">
+          <input class="mr-2" type="checkbox" class="cow-check">
+          <p class="m-0 inline"></p>
+        </label>
+      </section>
+    </template>
+    <div id="cow-trip-container" class="flex flex-col-reverse mt-4">
+    </div>
+    <button id="start-optimizing-greedy-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit"
+            pys-onClick="start_cow_transport_optimization_greedy_event"> Solve transport greedy
+    </button>
+    <button id="start-optimizing-brute-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit"
+            pys-onClick="start_cow_transport_optimization_brute_event"> Solve transport brute
+    </button>
+      <template id="result-list-template">
+    <section class="result bg-white my-1">
+      <label for="flex items-center p-2 ">
+<!--        <input class="mr-2" type="button" class="cow-check">-->
+        <p class="m-0 inline"></p>
+      </label>
+    </section>
+  </template>
+  <div id="results-container" class="flex flex-col-reverse mt-4"></div>
   </section>
-  </main>
+</main>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
