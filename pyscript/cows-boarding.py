@@ -60,17 +60,17 @@ def add_cow(*ags, **kws):
 def remove_cows(e):
     cows_list = cow_trip_div.element.children
 
-    for cow in cows_list:
+    for cow in range(len(cows_list)):
         current_cow = cow_trip_div.element.children.item(cow)
-        current_cow_content = current_cow.children.item(0).children.item(1)
-        is_cow_to_delete = current_cow_content.classList.contains("line-through")
-        if is_cow_to_delete:
-            print(current_cow)
+        if current_cow is not None:
+            current_cow_content = current_cow.children.item(0).children.item(1)
+            is_cow_to_delete = current_cow_content.classList.contains("line-through")
+            if is_cow_to_delete:
+                cow_trip_div.element.removeChild(current_cow)
 
 
 
 def add_result(algo_type):
-
     # create result
     global results_count
     result_id = f"result-{results_count}"
