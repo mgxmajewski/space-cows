@@ -7,6 +7,7 @@ cows_transport = []
 cows_transport_dict = {}
 
 results_count = 0
+current_limit = 10
 
 # define the task template that will be use to render new templates to the page
 cow_template = Element("cow-list-template").select(".cow", from_content=True)
@@ -15,10 +16,14 @@ cow_trip_div = Element("cow-trip-container")
 results_div = Element("results-container")
 new_cow_name = Element("new-cow-name")
 new_cow_weight = Element("new-cow-weight")
+current_limit_paragraph = Element("current-limit")
+updated_limit_input = Element("updated-limit")
 start_optimizing_greedy_btn = Element("start-optimizing-greedy-btn")
 start_optimizing_brute_btn = Element("start-optimizing-brute-btn")
 remove_cows_btn = Element("remove-cows-btn")
+update_limit_btn = Element("update-limit-btn")
 
+current_limit_paragraph.element.innerText = current_limit
 
 def add_cow(*ags, **kws):
     # ignore empty cow input
@@ -62,7 +67,7 @@ def add_result(algo_type):
     result_id = f"result-{results_count}"
     result = {
       "id": result_id,
-      "content": f"{algo_type.__name__}, {algo_type(cows_transport_dict)}",
+      "content": f"{algo_type.__name__}, {algo_type(cows_transport_dict, current_limit)}",
       "done": False,
       "created_at": dt.now(),
     }
@@ -75,6 +80,21 @@ def add_result(algo_type):
     result_html_content = result_html.select("p")
     result_html_content.element.innerText = result["content"]
     results_div.element.appendChild(result_html.element)
+
+
+def update_state(*ags, **kws):
+    global current_limit
+    limit_after_update = updated_limit_input.element.value
+    if not limit_after_update:
+        return None
+
+    current_limit = limit_after_update
+    current_limit_paragraph.element.innerText = current_limit
+
+
+# def update_state_event(e):
+#     update_state()
+#
 
 
 def add_cow_event(e):
@@ -94,3 +114,5 @@ def start_cow_transport_optimization_brute_event(e):
 new_cow_name.element.onkeypress = add_cow_event
 start_optimizing_greedy_btn.element.onclick = start_cow_transport_optimization_greedy_event
 start_optimizing_brute_btn.element.onclick = start_cow_transport_optimization_brute_event
+# update_limit_btn.element.onclick = update_state_event
+
