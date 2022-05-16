@@ -9,7 +9,7 @@ cows_transport_dict = {}
 results_count = 0
 current_limit = 10
 
-# define the task template that will be use to render new templates to the page
+# define the task template that will be used to render new templates to the page
 cow_template = Element("cow-list-template").select(".cow", from_content=True)
 result_template = Element("result-list-template").select(".result", from_content=True)
 cow_trip_div = Element("cow-trip-container")
@@ -24,6 +24,7 @@ remove_cows_btn = Element("remove-cows-btn")
 update_limit_btn = Element("update-limit-btn")
 
 current_limit_paragraph.element.innerText = current_limit
+
 
 def add_cow(*ags, **kws):
     # ignore empty cow input
@@ -47,7 +48,7 @@ def add_cow(*ags, **kws):
     cow_html = cow_template.clone(cow_id, to=cow_trip_div)
     cow_html_content = cow_html.select("p")
     cow_html_content.element.innerText = cow["content"]
-    cow_html_check = cow_html.select("input")
+    cow_html_check = cow_html.select("span")
     cow_trip_div.element.appendChild(cow_html.element)
 
     def delete_cow(e):
@@ -57,7 +58,7 @@ def add_cow(*ags, **kws):
         del cows_transport_dict[current_cow_name]
 
     new_cow_name.clear()
-    new_cow_weight.clear()
+    new_cow_weight.element.value = 3
     cow_html_check.element.onclick = delete_cow
 
 
@@ -67,7 +68,7 @@ def add_result(algo_type):
     result_id = f"result-{results_count}"
     result = {
       "id": result_id,
-      "content": f"{algo_type.__name__}, {algo_type(cows_transport_dict, current_limit)}",
+      "content": f"{algo_type.__name__}, {algo_type(cows_transport_dict, int(current_limit))}",
       "done": False,
       "created_at": dt.now(),
     }

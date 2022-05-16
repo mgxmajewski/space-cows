@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>
   <meta name="theme-color" content="#fafafa">
 
-  <title>Todo App</title>
+  <title>Space Cows</title>
 
   <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>
@@ -47,19 +47,33 @@
     <div>
       <p id="current-limit"></p>
       <label for="updated-limit">Cow weight (integer)<input id="updated-limit"
-                                                             class="border flex-1 mr-3 border-gray-300 p-2 rounded"
-                                                             type="number" value="10" min="1"></label>
+                                                            class="border flex-1 mr-3 border-gray-300 p-2 rounded"
+                                                            type="number" value="10" min="10"></label>
       <button id="update-limit-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit"
               pys-onClick="update_state">
         Update trip weight limit
       </button>
     </div>
     <div>
-      <label for="new-cow-name">Cow name<input id="new-cow-name" class="border flex-1 mr-3 border-gray-300 p-2 rounded"
-                                               type="text"></label>
+      <label for="new-cow-name">
+        Cow name
+        <select id="new-cow-name" class="border flex-1 mr-3 border-gray-300 p-2 rounded" type="text">
+          <option value="" selected disabled hidden>Choose Cow</option>
+          <option value="Maggie">Maggie</option>
+          <option value="Herman">Herman</option>
+          <option value="Betsy">Betsy</option>
+          <option value="Oreo">Oreo</option>
+          <option value="Moo Moo">Moo Moo</option>
+          <option value="Milkshake">Milkshake</option>
+          <option value="Millie">Millie</option>
+          <option value="Lola">Lola</option>
+          <option value="Florence">Florence</option>
+          <option value="Henrietta">Henrietta</option>
+        </select>
+      </label>
       <label for="new-cow-weight">Cow weight (integer)<input id="new-cow-weight"
                                                              class="border flex-1 mr-3 border-gray-300 p-2 rounded"
-                                                             type="number" value="1" min="1"></label>
+                                                             type="number" value="3" min="1" max="10"></label>
       <button id="new-task-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit"
               pys-onClick="add_cow">
         Add cow
@@ -70,28 +84,30 @@
     <template id="cow-list-template">
       <section class="cow bg-white my-1">
         <label for="flex items-center p-2 ">
-          <input class="mr-2" type="checkbox" class="cow-check">
+          <span class="mr-2" class="cow-check">&#10006;</span>
           <p class="m-0 inline"></p>
         </label>
       </section>
     </template>
     <div id="cow-trip-container" class="flex flex-col-reverse mt-4">
     </div>
-    <button id="start-optimizing-greedy-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit"
+    <button id="start-optimizing-greedy-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded"
+            type="submit"
             pys-onClick="start_cow_transport_optimization_greedy_event"> Solve transport greedy
     </button>
-    <button id="start-optimizing-brute-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit"
+    <button id="start-optimizing-brute-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded"
+            type="submit"
             pys-onClick="start_cow_transport_optimization_brute_event"> Solve transport brute
     </button>
-      <template id="result-list-template">
-        <section class="result bg-white my-1">
-          <label for="flex items-center p-2 ">
-<!--        <input class="mr-2" type="button" class="cow-check">-->
+    <template id="result-list-template">
+      <section class="result bg-white my-1">
+        <label for="flex items-center p-2 ">
+          <!--        <input class="mr-2" type="button" class="cow-check">-->
           <p class="m-0 inline"></p>
-      </label>
-    </section>
-  </template>
-  <div id="results-container" class="flex flex-col-reverse mt-4"></div>
+        </label>
+      </section>
+    </template>
+    <div id="results-container" class="flex flex-col-reverse mt-4"></div>
   </section>
 </main>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
