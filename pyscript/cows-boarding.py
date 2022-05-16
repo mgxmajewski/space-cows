@@ -52,9 +52,12 @@ def add_cow(*ags, **kws):
     cow_trip_div.element.appendChild(cow_html.element)
 
     def delete_cow(e):
-        cow_html.element.remove()
-        current_cow_paragraph = cow_html.element.children.item(0).children.item(1)
+        print(cow_html.element.children.item(1).innerHTML)
+        current_cow_paragraph = cow_html.element.children.item(1)
         current_cow_name = current_cow_paragraph.innerHTML.split(':')[0]
+        print(current_cow_paragraph)
+        print(current_cow_name)
+        cow_html.element.remove()
         del cows_transport_dict[current_cow_name]
 
     new_cow_name.clear()
@@ -86,6 +89,7 @@ def add_result(algo_type):
 def update_state(*ags, **kws):
     global current_limit
     limit_after_update = updated_limit_input.element.value
+    updated_limit_input.element.value = 10
     if not limit_after_update:
         return None
 
