@@ -42,6 +42,7 @@ def add_cow(*ags, **kws):
 
     cows_transport.append(cow)
     cows_transport_dict[new_cow_name.element.value] = int(new_cow_weight.element.value)
+    Element(new_cow_name.element.value).element.setAttribute('disabled', '')
 
     # add the task element to the page as new node in the list by cloning from a
     # template
@@ -52,13 +53,11 @@ def add_cow(*ags, **kws):
     cow_trip_div.element.appendChild(cow_html.element)
 
     def delete_cow(e):
-        print(cow_html.element.children.item(1).innerHTML)
         current_cow_paragraph = cow_html.element.children.item(1)
         current_cow_name = current_cow_paragraph.innerHTML.split(':')[0]
-        print(current_cow_paragraph)
-        print(current_cow_name)
         cow_html.element.remove()
         del cows_transport_dict[current_cow_name]
+        Element(current_cow_name).element.removeAttribute('disabled')
 
     new_cow_name.clear()
     new_cow_weight.element.value = 3
