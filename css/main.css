@@ -1048,13 +1048,13 @@ ul > li:before {
   }
 }
 
-.cow-onboard-name {
-  /*font-size: 4vw;*/
+.solution-container {
+  font-size: 3vw;
 }
 
 @media (min-aspect-ratio: 63/44) {
-  .cow-onboard-name {
-    /*font-size: 3.47vw;*/
+  .solution-container {
+    font-size: 2vw;
   }
 }
 

@@ -34,8 +34,8 @@
 <!-- Add your site or application content here -->
 <!--<p>Hello world! This is HTML5 Boilerplate.</p>-->
 <!-- <py-repl id="my-repl" auto-generate="true"> </py-repl> -->
-<py-script src="/pyscript/cows-boarding.py"></py-script>
-<py-script src="/pyscript/ps1.py"></py-script>
+<py-script src="./pyscript/cows-boarding.py"></py-script>
+<py-script src="./pyscript/ps1.py"></py-script>
 
 <main class="cat-copy">
   <section>
@@ -124,12 +124,10 @@
       </section>
     </template>
     <nav class="project-line project-line--with-buttons">
-      <button id="start-optimizing-greedy-btn" class="button button--wider " type="submit"
-            pys-onClick="start_cow_transport_optimization_greedy_event">
+      <button id="start-optimizing-greedy-btn" class="button button--wider " type="submit">
       Greedy
     </button>
-    <button id="start-optimizing-brute-btn" class="button button--wider" type="submit"
-            pys-onClick="start_cow_transport_optimization_brute_event">
+    <button id="start-optimizing-brute-btn" class="button button--wider" type="submit">
       Brute force
     </button>
   </nav>
@@ -143,14 +141,14 @@
     </div>
 
     <template id="result-list-template">
-      <section class="result bg-white my-1">
-        <label for="flex items-center p-2 ">
-          <!--        <input class="mr-2" type="button" class="cow-check">-->
-          <p class="cow-onboard-name"></p>
-        </label>
+      <section class="result">
+        <p class="solution-container"></p>
+        <div class="tab-separator">
+          <div class="tab-separator__line"></div>
+        </div>
       </section>
     </template>
-    <div id="results-container" class="flex flex-col-reverse mt-4"></div>
+    <div id="results-container" class="flex flex-col-reverse"></div>
   </section>
 </main>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>

@@ -106,17 +106,21 @@ def add_cow_event(e):
         add_cow()
 
 
-def start_cow_transport_optimization_greedy_event(e):
+def solve_greedy_event(e):
+    e.stopPropagation()
+    e.preventDefault()
     add_result(greedy_cow_transport)
     # greedy_cow_transport(cows_transport_dict)
 
 
-def start_cow_transport_optimization_brute_event(e):
+def solve_brute_event(e):
+    e.stopPropagation()
+    e.preventDefault()
     add_result(brute_force_cow_transport)
 
 
 new_cow_name.element.onkeypress = add_cow_event
-start_optimizing_greedy_btn.element.onclick = start_cow_transport_optimization_greedy_event
-start_optimizing_brute_btn.element.onclick = start_cow_transport_optimization_brute_event
+start_optimizing_greedy_btn.element.onclick = solve_greedy_event
+start_optimizing_brute_btn.element.onclick = solve_brute_event
 # update_limit_btn.element.onclick = update_state_event
 
